@@ -1,9 +1,9 @@
 "use strict";
 
 let CartItem =  require('../src/CartItem/CartItem.js');
-const InvalidArticleIdException = require("../src/CartItem/InvalidArticleIdException.js");
-const InvalidQuantityException = require("../src/CartItem/InvalidQuantityException.js");
-const InvalidPriceException = require("../src/CartItem/InvalidPriceException.js");
+const InvalidArticleIdException = require("../src/CartItem/exceptions/InvalidArticleIdException.js");
+const InvalidQuantityException = require("../src/CartItem/exceptions/InvalidQuantityException.js");
+const InvalidPriceException = require("../src/CartItem/exceptions/InvalidPriceException.js");
 
 test('allGetters_NominalCase_Success', () => {
     //given
