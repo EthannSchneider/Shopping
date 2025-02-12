@@ -1,8 +1,8 @@
 "use strict";
 let Cart = require("../src/Cart/Cart.js");
 const CartItem = require("../src/CartItem/CartItem.js");
-const EmptyCartException = require("../src/Cart/EmptyCartException.js");
-const UpdateCartException = require("../src/Cart/UpdateCartException.js");
+const EmptyCartException = require("../src/Cart/exceptions/EmptyCartException.js");
+const UpdateCartException = require("../src/Cart/exceptions/UpdateCartException.js");
 
 test("items_NominalCase_GetItems", () => {
     //given
