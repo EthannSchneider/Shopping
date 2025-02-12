@@ -1,51 +1,63 @@
 "use strict";
 
-const InvalidArticleIdException = require("./InvalidArticleIdException.js");
-const InvalidQuantityException = require("./InvalidQuantityException.js");
-const InvalidPriceException = require("./InvalidPriceException.js");
+const InvalidArticleIdException = require("./exceptions/InvalidArticleIdException.js");
+const InvalidQuantityException = require("./exceptions/InvalidQuantityException.js");
+const InvalidPriceException = require("./exceptions/InvalidPriceException.js");
 
 module.exports = class CartItem {
 
     //region private attributes
+    #articleId;
+    #name;
+    #quantity;
+    #price;
     //endregion private attributes
 
     //region public methods
     constructor(articleId, name, quantity, price) {
-	throw new Error();
+        this.#validate(articleId < 1, new InvalidArticleIdException());
+        this.#articleId = articleId;
+        this.#name = name;
+        this.quantity = quantity;
+        this.price = price;
     }
 
     get articleId() {
-        throw new Error();
+        return this.#articleId;
     }
 
     get name() {
-        throw new Error();
+        return this.#name;
     }
 
     get quantity() {
-        throw new Error();
+        return this.#quantity;
     }
 
     set quantity(value) {
-        throw new Error();
+        this.#validate(value < 1, new InvalidQuantityException());
+        this.#quantity = value;
     }
 
     get price() {
-        throw new Error();
+        return this.#price;
     }
 
     set price(value) {
-        throw new Error();
+        this.#validate(value < 10, new InvalidPriceException());
+        this.#price = value;
     }
 
     get total() {
-        throw new Error();
+        return this.#quantity * this.#price;
     }
     //endregion public methods
 
     //region private methods
+    #validate(isValid, exception) {
+        if (isValid) {
+            throw exception;
+        }
+    };
     //endregion private methods
 }
-
-
-
