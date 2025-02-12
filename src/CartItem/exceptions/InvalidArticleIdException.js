@@ -1,3 +1,2 @@
 const CartItemException = require("./CartItemException.js");
-module.exports = class InvalidArticleIdException extends CartItemException{
-}
+module.exports = class InvalidArticleIdException extends CartItemException {};

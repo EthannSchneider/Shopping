@@ -1,2 +1,2 @@
 const ApplicationException = require("../../ApplicationException/ApplicationException.js");
-module.exports = class CartItemException extends ApplicationException {};
+module.exports = class CartException extends ApplicationException {};
