@@ -3,13 +3,13 @@
 const EmptyCartException = require("./exceptions/EmptyCartException.js");
 const UpdateCartException = require("./exceptions/UpdateCartException.js");
 
-class Cart {
+module.exports = class Cart {
     //region private attributes
     #items;
     //endregion private attributes
 
     //region public methods
-    constructor(items = []) {
+    constructor(items) {
         this.#items = items || [];
     }
 
@@ -49,6 +49,4 @@ class Cart {
         }
     }
     //endregion private methods
-}
-
-module.exports = Cart;
+};
