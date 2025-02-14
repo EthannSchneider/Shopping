@@ -1,19 +1,37 @@
 ```mermaid
 classDiagram
     class CartItem {
-        - int #articleId
-        - String #name
-        - int #quantity
-        - double #price
-        + CartItem(int articleId, String name, int quantity, double price)
-        + int getArticleId()
-        + String getName()
-        + int getQuantity()
-        + void setQuantity(int value)
-        + double getPrice()
-        + void setPrice(double value)
-        + double getTotal()
-        - void #validate(boolean isValid, Exception exception)
+        - articleId: int
+        - name: string
+        - quantity: int
+        - price: double
+        + CartItem(articleId: int, name: string, quantity: int, price: double)
+        + < get > articleId() int
+        + < get, set > quantity() int
+        + < get,set > price() double
+        + < get > total() double
+        - validate(isValid: boolean, exception: Exception) void
+    }
+
+    class Cart {
+        - items: CartItem[]
+        + Cart(items CartItem[])
+        + < get > items() CartItem[] 
+        + < get > total() double
+        + count(distinct: boolean) int
+        + add(items: CartItem[]) void
+        - checkEmptyCart() void
+    }
+
+    Cart *-- CartItem
+
+    class EmptyCartException {
+    }
+
+    class UpdateCartException {
+    }
+
+    class CartException {
     }
 
     class InvalidArticleIdException {
@@ -28,11 +46,23 @@ classDiagram
     class CartItemException {
     }
 
+    class ApplicationException {
+    }
+
     InvalidArticleIdException --|> CartItemException
     InvalidPriceException --|> CartItemException
     InvalidQuantityException --|> CartItemException
 
+    EmptyCartException --|> CartException
+    UpdateCartException --|> CartException
+
+    CartException --|> ApplicationException
+    CartItemException --|> ApplicationException
+
     CartItem --> InvalidArticleIdException : throws
     CartItem --> InvalidPriceException : throws
     CartItem --> InvalidQuantityException : throws
+
+    Cart --> EmptyCartException : throws
+    Cart --> UpdateCartException : throws
 ```
